@@ -18,4 +18,4 @@ class memcached {
     enable    => true,
     subscribe => File['memcached_config'],
   }
-    
+}   
