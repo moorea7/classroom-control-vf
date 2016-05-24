@@ -47,6 +47,7 @@ node default {
   include users
   include skeleton
   include memcached
+  include nginx
   
   exec { 'createmotd' :
     command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
