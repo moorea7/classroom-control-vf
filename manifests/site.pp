@@ -49,6 +49,6 @@ node default {
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    content => 'This is my message of the day\n',
+    content => "This is my message of the day\n",
   }
 }
