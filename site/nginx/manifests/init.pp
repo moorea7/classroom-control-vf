@@ -57,6 +57,22 @@ class nginx {
     path   => '/var/www',
   }
   
+  file { '/etc/nginx' :
+    ensure  => directory,
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    require => Package['nginx'],
+  }
+  
+  file { '/etc/nginx/conf.d' :
+    ensure  => directory,
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    require => Package['nginx'],
+  }
+  
   file { 'configfile' :
     ensure  => file,
     mode    => '0644',
