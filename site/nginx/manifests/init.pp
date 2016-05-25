@@ -3,7 +3,7 @@ class nginx {
 	mode    => '0644',
 	owner   => 'root',
 	group   => 'root',
-	require => Package['nginx'],
+	require => Package[$module_name],
   }
   
   Yumrepo {
@@ -13,7 +13,7 @@ class nginx {
     priority            => '99',
     skip_if_unavailable => '1',
     gpgkey              => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7',
-    before              => Package['nginx'],
+    before              => Package[$module_name],
   }
 
   yumrepo { 'base':
@@ -36,7 +36,7 @@ class nginx {
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus&infra=$infra',
   }
   
-  package { 'nginx' :
+  package { $module_name :
     ensure  => present,
   }
 
@@ -62,7 +62,7 @@ class nginx {
     source  => 'puppet:///modules/nginx/index.html',
   }
   
-  service { 'nginx':
+  service { $module_name :
     ensure    => running,
     enable    => true,
     subscribe => File['configfile', 'serverblock'],
