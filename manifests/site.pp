@@ -51,7 +51,7 @@ node default {
   
   if $::virtual {
 	$virtual = capitalize($::virtual)
-	notify { "This is a $virtual virtual machine" }
+	notify { "This is a $virtual virtual machine": }
   }
   
   exec { 'createmotd' :
