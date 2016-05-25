@@ -89,7 +89,7 @@ class nginx {
   service { 'nginx':
     ensure    => running,
     enable    => true,
-    subscribe => File['configfile', 'serverblock', 'index.html']
-    require   => Package['nginx']
+    subscribe => File['configfile', 'serverblock', 'index.html'],
+    require   => Package['nginx'],
   }
 }
