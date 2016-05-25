@@ -49,6 +49,11 @@ node default {
   include memcached
   include nginx
   
+  if $::virtual {
+	$virtual = capitalize($::virtual)
+	notify { "This is a $virtual virtual machine" }
+  }
+  
   exec { 'createmotd' :
     command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
     creates => '/etc/motd',
