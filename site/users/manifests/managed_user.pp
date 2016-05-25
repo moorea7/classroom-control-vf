@@ -2,7 +2,7 @@ define users::managed_user (
   $username = $title,
   $group = $title,
   $homedir = "/home/$username",
-r) {
+) {
   user { $username :
     ensure => present,
     gid    => $group,
