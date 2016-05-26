@@ -1,3 +1,3 @@
 class wrapers::limits {
-  include ::limits
+  include limits
 }
