@@ -50,7 +50,7 @@ node default {
   include users::admins
 
   class { 'nginx' :
-    root => '/var/www2',
+    docroot => '/var/www',
   }
 
   if $::is_virtual {
