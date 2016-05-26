@@ -43,24 +43,28 @@ node default {
   # Example
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname}": }
-  
+
   include users
   include skeleton
   include memcached
   include nginx
   include users::admins
-  
+
   if $::is_virtual {
-	$virtual = capitalize($::virtual)
-	notify { "This is a $virtual virtual machine": }
+    $virtual = capitalize($::virtual)
+    notify { "This is a $virtual virtual machine": }
   }
-  
+
+  $message = hiera('message')
+
+  notify { "The value Hiera returns for message = ${message}" : }
+
   exec { 'createmotd' :
     command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
     creates => '/etc/motd',
     path => '/usr/bin:/usr/local/bin',
   }
-  
+
   host { 'testing' :
     name => 'testing.puppetlabs.vm',
     ensure => present,
