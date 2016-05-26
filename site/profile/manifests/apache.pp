@@ -1,3 +1,3 @@
 class profile::apache {
-  notice { 'placeholder for apache profile' : }
+  notify { 'placeholder for apache profile' : }
 }
