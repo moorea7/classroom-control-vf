@@ -1,11 +1,13 @@
-class nginx {
+class nginx (
+  $root = undef,
+){
 
   case $::osfamily {
     'redhat', 'debian' : {
       $package = 'nginx'
       $owner = 'root'
       $group = 'root'
-      $docroot = '/var/www'
+      $defaultdocroot = '/var/www'
       $configdir = '/etc/nginx'
       $logdir = '/var/log/nginx'
       $svrblockdir = '/etc/nginx/conf.d'
@@ -14,7 +16,7 @@ class nginx {
       $package = 'nginx-service'
       $owner = 'Administrator'
       $group = 'Administrators'
-      $docroot = 'C:/ProgramData/nginx/html'
+      $defaultdocroot = 'C:/ProgramData/nginx/html'
       $configdir = 'C:/ProgramData/nginx'
       $logdir = 'C:/ProgramData/nginx/logs'
       $svrblockdir = 'C:/ProgramData/nginx/conf.d'
@@ -22,6 +24,13 @@ class nginx {
     default : {
       fail("Module ${module_name} is not intended to run on ${::osfamily}")
     }
+  }
+
+  if $root {
+    $docroot = $root,
+  }
+  else {
+    $docroot = $defaultdocroot,
   }
 
   $runasuser = $::osfamily ? {
