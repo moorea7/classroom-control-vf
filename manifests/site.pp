@@ -48,10 +48,7 @@ node default {
   include skeleton
   include memcached
   include users::admins
-
-  class { 'nginx' :
-    docroot => '/var/www',
-  }
+  include nginx
 
   if $::is_virtual {
     $virtual = capitalize($::virtual)
