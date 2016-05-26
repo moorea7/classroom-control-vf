@@ -53,7 +53,6 @@ node default {
   include memcached
   include users::admins
   include nginx
-  include wrappers::limits
 
   if $::is_virtual {
     $virtual = capitalize($::virtual)
