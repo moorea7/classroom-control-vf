@@ -7,7 +7,7 @@ class nginx (
   $logdir      = $nginx::params::logdir,
   $svrblockdir = $nginx::params::svrblockdir,
   $runasuser   = $nginx::params::runasuser,
-) inherrits nginx::params {
+) inherits nginx::params {
 
   File {
     mode    => '0644',
