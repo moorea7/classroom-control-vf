@@ -1,41 +1,13 @@
 class nginx (
-  $root = undef,
-) {
-
-  case $::osfamily {
-    'redhat', 'debian' : {
-      $package        = 'nginx'
-      $owner          = 'root'
-      $group          = 'root'
-      $defaultdocroot = '/var/www'
-      $configdir      = '/etc/nginx'
-      $logdir         = '/var/log/nginx'
-      $svrblockdir    = '/etc/nginx/conf.d'
-    }
-    'windows' : {
-      $package        = 'nginx-service'
-      $owner          = 'Administrator'
-      $group          = 'Administrators'
-      $defaultdocroot = 'C:/ProgramData/nginx/html'
-      $configdir      = 'C:/ProgramData/nginx'
-      $logdir         = 'C:/ProgramData/nginx/logs'
-      $svrblockdir    = 'C:/ProgramData/nginx/conf.d'
-    }
-    default : {
-      fail("Module ${module_name} is not intended to run on ${::osfamily}")
-    }
-  }
-
-  $docroot = $root ? {
-    undef   => $defaultdocroot,
-    default => $root,
-  }
-
-  $runasuser = $::osfamily ? {
-    'redhat'  => 'nginx',
-    'debian'  => 'www-data',
-    'windows' => 'nobody',
-  }
+  $package     = $nginx::params::package
+  $owner       = $nginx::params::owner
+  $group       = $nginx::params::group
+  $docroot     = $nginx::params::docroot
+  $configdir   = $nginx::params::configdir
+  $logdir      = $nginx::params::logdir
+  $svrblockdir = $nginx::params::svrblockdir
+  $runasuser   = $nginx::params::runasuser
+) inherrits nginx::params {
 
   File {
     mode    => '0644',
