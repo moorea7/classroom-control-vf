@@ -1,12 +1,12 @@
 class nginx (
-  $package     = $nginx::params::package
-  $owner       = $nginx::params::owner
-  $group       = $nginx::params::group
-  $docroot     = $nginx::params::docroot
-  $configdir   = $nginx::params::configdir
-  $logdir      = $nginx::params::logdir
-  $svrblockdir = $nginx::params::svrblockdir
-  $runasuser   = $nginx::params::runasuser
+  $package     = $nginx::params::package,
+  $owner       = $nginx::params::owner,
+  $group       = $nginx::params::group,
+  $docroot     = $nginx::params::docroot,
+  $configdir   = $nginx::params::configdir,
+  $logdir      = $nginx::params::logdir,
+  $svrblockdir = $nginx::params::svrblockdir,
+  $runasuser   = $nginx::params::runasuser,
 ) inherrits nginx::params {
 
   File {
