@@ -39,7 +39,7 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node 'moorea7.puppetlabs.vm' {
-  #Placeholder for capstone lab
+  include role::blog
 }
 
 node default {
